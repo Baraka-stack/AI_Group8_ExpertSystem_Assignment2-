@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Educational Scholarship Advisor - Group #8</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/templates.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header class="app-header">
+            <i class="fas fa-graduation-cap header-icon"></i>
+            <h1>Educational Scholarship Advisor</h1>
+        </header>
+        
+        <div class="tabs">
+            <button class="tab-btn active" data-tab="input">
+                <i class="fas fa-user-graduate"></i> Student Information
+            </button>
+            <button class="tab-btn" data-tab="results">
+                <i class="fas fa-chart-bar"></i> Results
+            </button>
+            <button class="tab-btn" data-tab="about">
+                <i class="fas fa-info-circle"></i> About
+            </button>
+        </div>
+
+        <div class="tab-content active" id="input">
+            <form id="scholarshipForm">
+                <div class="form-group">
+                    <i class="fas fa-award input-icon"></i>
+                    <label for="gpa">GPA (0.0-4.0):</label>
+                    <input type="number" id="gpa" name="gpa" step="0.01" min="0" max="4" required>
+                </div>
+
+                <div class="form-group">
+                    <i class="fas fa-money-bill-wave input-icon"></i>
+                    <label for="family_income">Annual Family Income (RWF):</label>
+                    <input type="number" id="family_income" name="family_income" required>
+                </div>
+
+                <div class="checkbox-group">
+                    <div class="form-group checkbox">
+                        <label>
+                            <i class="fas fa-tasks input-icon"></i>
+                            <input type="checkbox" name="extracurricular">
+                            Extracurricular Activities
+                        </label>
+                    </div>
+
+                    <div class="form-group checkbox">
+                        <label>
+                            <i class="fas fa-running input-icon"></i>
+                            <input type="checkbox" name="sports">
+                            Sports Achievements
+                        </label>
+                    </div>
+
+                    <div class="form-group checkbox">
+                        <label>
+                            <i class="fas fa-crown input-icon"></i>
+                            <input type="checkbox" name="leadership">
+                            Leadership Roles
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <i class="fas fa-hands-helping input-icon"></i>
+                    <label for="community_hours">Community Service Hours:</label>
+                    <input type="number" id="community_hours" name="community_hours" min="0" required>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn primary">
+                        <i class="fas fa-search"></i> Check Eligibility
+                    </button>
+                    <button type="reset" class="btn secondary">
+                        <i class="fas fa-undo"></i> Clear Form
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <div class="tab-content" id="results">
+            <div id="resultsContent">
+                <p>Submit the form to see results.</p>
+            </div>
+        </div>
+
+        <div class="tab-content" id="about">
+            <h2>About This Expert System</h2>
+            <p>Educational Scholarship Advisor is a rule-based expert system designed to evaluate student eligibility for various scholarships.</p>
+            <!-- Add more about content -->
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
