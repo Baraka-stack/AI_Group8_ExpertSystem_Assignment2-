@@ -1,0 +1,96 @@
+document.addEventListener('DOMContentLoaded', function() {
+    const tabs = document.querySelectorAll('.tab-btn');
+    const tabContents = document.querySelectorAll('.tab-content');
+    const form = document.getElementById('scholarshipForm');
+
+    // Tab switching
+    tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            tabs.forEach(t => t.classList.remove('active'));
+            tabContents.forEach(c => c.classList.remove('active'));
+            
+            tab.classList.add('active');
+            document.getElementById(tab.dataset.tab).classList.add('active');
+        });
+    });
+
+    // Form submission
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        const formData = new FormData(form);
+        try {
+            const response = await fetch('/evaluate', {
+                method: 'POST',
+                body: formData
+            });
+            
+            const data = await response.json();
+            if (response.ok) {
+                displayResults(data);
+                // Switch to results tab
+                tabs[1].click();
+            } else {
+                alert(data.error || 'An error occurred');
+            }
+        } catch (error) {
+            alert('Error submitting form');
+        }
+    });
+});
+
+function displayResults(data) {
+    const resultsDiv = document.getElementById('resultsContent');
+    let html = `
+        <div class="results-section">
+            <h3>Student Information</h3>
+            <div class="info-grid">
+                <div class="info-item">
+                    <span class="label">GPA:</span>
+                    <span class="value">${data.facts.gpa}</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">Family Income:</span>
+                    <span class="value">${data.facts.family_income} RWF</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">Extracurricular:</span>
+                    <span class="value">${data.facts.extracurricular_activities ? 'Yes' : 'No'}</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">Sports:</span>
+                    <span class="value">${data.facts.sports_achievement ? 'Yes' : 'No'}</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">Leadership:</span>
+                    <span class="value">${data.facts.leadership_role ? 'Yes' : 'No'}</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">Community Hours:</span>
+                    <span class="value">${data.facts.community_service}</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="results-section">
+            <h3>Scholarship Results</h3>
+            <div class="scholarships-list">
+                ${Object.entries(data.conclusions).map(([key, value]) => `
+                    <div class="scholarship-item ${value === 'Eligible' ? 'eligible' : 'ineligible'}">
+                        <i class="fas ${value === 'Eligible' ? 'fa-check-circle' : 'fa-times-circle'}"></i>
+                        <span>${key.replace(/_/g, ' ').toUpperCase()}: ${value}</span>
+                    </div>
+                `).join('')}
+            </div>
+        </div>
+
+        <div class="results-section">
+            <h3>Applied Rules</h3>
+            <ul class="rules-list">
+                ${data.rules_fired.map(rule => `<li>${rule}</li>`).join('')}
+            </ul>
+        </div>
+    `;
+
+    resultsDiv.innerHTML = html;
+}
