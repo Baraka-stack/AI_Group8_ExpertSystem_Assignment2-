@@ -4,7 +4,7 @@
 - Group Number: [8]
   Group Members:
   - Baraka Mussa 23/22370 - Team Leader
-  - Ndungiutse Frank 23/21369- Research Analyst
+  - Ndungutse Frank 23/21369- Research Analyst
   - Laurene Uwabatoni  23/22709 - System Designer
   - Umuhire Kamwanya Nuswayiba 23/23307 - Python Developer
   - Uwase Jeanne Gentille 23/22298 - Tester & Documenter
@@ -43,7 +43,7 @@ you must have your gpa and know your strengths and family income annually
 
 
 ## Try It Live
-[![Binder](https://mybinder.org/v2/gh/Baraka-stack/AI_Group8_ExpertSystem_Assignment2-/HEAD)
+(https://mybinder.org/v2/gh/Baraka-stack/AI_Group8_ExpertSystem_Assignment2-/HEAD)
 
 
 ## Development Process
