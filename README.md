@@ -43,7 +43,7 @@ you must have your gpa and know your strengths and family income annually
 
 
 ## Try It Live
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/[your-github-username]/AI_GroupX_ExpertSystem_Assignment2/main)
+[![Binder](https://mybinder.org/v2/gh/Baraka-stack/AI_Group8_ExpertSystem_Assignment2-/HEAD)
 
 
 ## Development Process
